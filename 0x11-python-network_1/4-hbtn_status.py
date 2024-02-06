@@ -1,23 +1,11 @@
 #!/usr/bin/python3
-
 """
-get https://alx-intranet.hbtn.io/status using
-requests and print the response to stdout
+Python script that fetches an URL with requests package
 """
-
-from requests import get
-
-
-def get_alx_intranet(url='https://alx-intranet.hbtn.io/status'):
-    """
-    Send a GET request to the url
-    and print the reponse
-    """
-    res = get(url)
-    print("Body response:")
-    print("\t- type: {}".format(str(res).__class__))
-    print("\t- content: {}".format(res.text))
+import requests
 
 
 if __name__ == "__main__":
-    get_alx_intranet()
+    r = requests.get('https://alx-intranet.hbtn.io/status')
+    t = r.text
+    print('Body response:\n\t- type: {}\n\t- content: {}'.format(type(t), t))

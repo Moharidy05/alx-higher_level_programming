@@ -1,37 +1,18 @@
 #!/usr/bin/python3
-
 """
-Lists all cities from the cities table of database hbtn_0e_0_usa.
-Usage: ./5-filter_cities.py <username> <password> <database-name>
-<state>
+List all cities of a state
 """
 import sys
-import MySQLdb as db
+import MySQLdb
 
+if __name__ == '__main__':
+    db = MySQLdb.connect(user=sys.argv[1], passwd=sys.argv[2],
+                         db=sys.argv[3], port=3306)
 
-def connect_and_query() -> None:
+    cur = db.cursor()
+    cur.execute("SELECT cities.id, cities.name, states.name \
+    FROM cities JOIN states ON cities.state_id = states.id \
+    WHERE states.name = '{}';".format(sys.argv[4]))
+    states = cur.fetchall()
 
-    """Connect to the database and execute query"""
-    try:
-        cnx = db.connect(user=sys.argv[1], passwd=sys.argv[2], db=sys.argv[3])
-        cursor = cnx.cursor(cursorclass=db.cursors.Cursor)
-        cursor.execute('SELECT city.name, state.name\
-                        FROM cities as city\
-                        INNER JOIN states as state\
-                        ON city.state_id = state.id\
-                        ORDER BY city.id ASC;')
-        cities = cursor.fetchall()
-        cities_list = []
-        for city in cities:
-            if city[1] == sys.argv[4]:
-                cities_list.append(city[0])
-        print(", ".join(list(dict.fromkeys((cities_list)))))
-
-        cursor.close()
-        cnx.close()
-    except Exception as e:
-        return (e)
-
-
-if __name__ == "__main__":
-    connect_and_query()
+    print(", ".join([state[1] for state in states]))

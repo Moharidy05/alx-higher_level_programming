@@ -1,8 +1,7 @@
 #!/usr/bin/python3
+# Author -Bamidele Adefolaju
+
 i = 0
-for num in range(122, 96, -1):
-    print("{0}".format(chr(num - i)), end="")
-    if i == 0:
-        i = 32
-    else:
-        i = 0
+for c in range(ord('z'), ord('a') - 1, -1):
+    print("{}".format(chr(c - i)), end="")
+    i = 32 if i == 0 else 0

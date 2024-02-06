@@ -1,80 +1,88 @@
-![img](https://assets.imaginablefutures.com/media/images/ALX_Logo.max-200x150.png)
+# SQL - Introduction
 
-![sql-meme](https://s3.amazonaws.com/intranet-projects-files/holbertonschool-higher-level_programming+/272/rtcwz.jpg)
+In this project, we began working on relational databases. I started practising introductory SQL data definitions and data manipulation language, making subqueries, and using functions.
 
-## About
-SQL! Structured Query Language (SQL) is a programming language that is widely used for managing and manipulating relational databases. With its ability to extract valuable insights and data from large and complex databases, SQL has become an essential tool for businesses of all sizes. In this project, we'll dive into the basics of SQL, its key features and benefits, and how you can use it to manage your own databases. Whether you're a beginner or an experienced user, this project will provide you with a comprehensive overview of SQL and its applications. So, let's get started!
+## Tasks :page_with_curl:
 
-## Resources
-__Read or watch__ 
-1. [What is a Database & SQL](https://www.youtube.com/watch?v=FR4QIeZaPeM)
-2. [Basic mySQL tutorial](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-20-04)
-3. [Basic SQL statments DDL and DML](https://web.csulb.edu/colleges/coe/cecs/dbdesign/dbdesign.php?page=sql/ddldml.php)
-4. [Basic Queries SQL and RA](https://web.csulb.edu/colleges/coe/cecs/dbdesign/dbdesign.php?page=sql/queries.php)
-6. [SQL techniques: functions](https://web.csulb.edu/colleges/coe/cecs/dbdesign/dbdesign.php?page=sql/functions.php)
-7. [SQL techniques: subqueries](https://web.csulb.edu/colleges/coe/cecs/dbdesign/dbdesign.php?page=sql/subqueries.php)
-8. [What makes a big difference between backticks and apostrophe](https://stackoverflow.com/questions/29402361/what-makes-the-big-difference-between-a-backtick-and-an-apostrophe/29402458)
-9. [MySQL cheatsheet](https://intellipaat.com/mediaFiles/2019/02/SQL-Commands-Cheat-Sheet.pdf?US)
-10. [MySQL 8.0 Statement syntax](https://dev.mysql.com/doc/refman/8.0/en/sql-statements.html)
-11. [Installing MySQL on ubuntu](https://phoenixnap.com/kb/install-mysql-ubuntu-20-04)
+* **0. List databases**
+  * [0-list_databases.sql](./0-list_databases.sql): MySQL script that lists all databases.
 
-## Learning objectives
+* **1. Create a database**
+  * [1-create_database.sql](./1-create_database.sql): MySQL script that creates the database `hbtn_0c_0`.
+  
+* **2. Delete a database**
+  * [2-remove_databases.sql](./2-remove_databases.sql): MySQL script that deletes the database `hbtn_0c_0`.
 
-At the end of this project, you are expected to be able to [explain to anyone](https://fs.blog/feynman-learning-technique/) the following concepts without the help of __Google__
+* **3. List tables**
+  * [3-list_tables.sql](./3-list_tables.sql): MySQL script that lists all tables.
+  
+* **4. First table**
+  * [4-first_table.sql](./4-first_table.sql): MySQL script that creates a table `first_table`.
+  * Description:
+    * `id`: INT
+    * `name`: VARCHAR(256)
 
-* [X] What’s a database
-* [X] What’s a relational database
-* [X] What does SQL stand for
-* [X] What’s MySQL
-* [X] How to create a database in MySQL
-* [X] What does DDL and DML stand for
-* [X] How to CREATE or ALTER a table
-* [X] How to SELECT data from a table
-* [X] How to INSERT, UPDATE or DELETE data
-* [X] What are subqueries
-* [X] How to use MySQL functions
+* **5. Full description**
+  * [5-full_table.sql](./5-full_table.sql): MySQL script that prints the full description of the table `first_table`.
+  
+* **6. List all in table**
+  * [6-list_values.sql](./6-list_values.sql): MySQL script that lists all rows of the table
+  `first_table`.
 
-## More info
-### Comments for your SQL files
+* **7. First add**
+  * [7-insert_value.sql](./7-insert_value.sql): MySQL script that inserts a new row in the table `first_table`.
+  * Description:
+    * `id` = `89`
+    * `name` = `Best School`
 
-```
-$ cat my_script.sql
--- 3 first students in the Batch ID=3
--- because Batch 3 is the best!
-SELECT id, name FROM students WHERE batch_id = 3 ORDER BY created_at DESC LIMIT 3;
-$
-```
+* **8. Count 89**
+  * [8-count_89.sql](./8-count_89.sql): MySQL script that displays the number records with `id = 89` in the table `first_table`.
 
-### Install MySQL 8.0 on Ubuntu 20.04 LTS
+* **9. Full creation**
+  * [9-full_creation.sql](./9-full_creation.sql): MySQL script that creates and fills a table `second_table`.
+  * Description:
+    * `id`: INT
+    * `name`: VARCHAR(256)
+    * `score`: INT
+  * Records:
+    * `id` = 1, `name` = "John", `score` = 10
+    * `id` = 2, `name` = "Alex", `score` = 3
+    * `id` = 3, `name` = "Bob", `score` = 14
+    * `id` = 4, `name` = "George", `score` = 8
 
-```
-$ sudo apt update
-$ sudo apt install mysql-server
-...
-$ mysql --version
-mysql  Ver 8.0.25-0ubuntu0.20.04.1 for Linux on x86_64 ((Ubuntu))
-$
-```
+* **10. List by best**
+  * [10-top_score.sql](./10-top_score.sql): MySQL script that lists the `score` and `name` of all records of the table `second_table` in order of descending `score`.
 
-### Connect to your MySQL server
-```
-$ sudo mysql
-Welcome to the MySQL monitor.  Commands end with ; or \g.
-Your MySQL connection id is 11
-Server version: 8.0.25-0ubuntu0.20.04.1 (Ubuntu)
+* **11. Select the best**
+  * [11-best_score.sql](./11-best_score.sql): MySQL script that lists the `score` and `name` of all records with a `score >= 10` in the table `second_table` in order of descending score.
 
-Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+* **12. Cheating is bad**
+  * [12-no_cheating.sql](./12-no_cheating.sql): MySQL script that updates the score of Bob to 10 the table `second_table`.
 
-Oracle is a registered trademark of Oracle Corporation and/or its
-affiliates. Other names may be trademarks of their respective
-owners.
+* **13. Score too low**
+  * [13-change_class.sql](./13-change_class.sql): MySQL script that removes all records with a `score <= 5` in the table `second_table`.
 
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+* **14. Average**
+  * [14-average.sql](./14-average.sql): MySQL script that computes the average `score` of all records in the table `second_table`.
 
-mysql>
-mysql> quit
-Bye
-$
-```
-## Quizes
-[Quiz](./quiz.md)
+* **15. Number by score**
+  * [15-groups.sql](./15-groups.sql): MySQL script that lists the `score` and number of records with the same score in the table `second_table` in order of descending count.
+
+* **16. Say my name**
+  * [16-no_link.sql](./16-no_link.sql): MySQL script that lists the `score` and `name` of all records in the table `second_table` in order of descending `score`.
+  * Does not display rows without a `name` value.
+
+* **17. Go to UTF8**
+  * [100-move_to_utf8.sql](./100-move_to_utf8.sql): MySQL script that converts the `hbtn_0c_0` database to UTF8.
+
+* **18. Temperatures #0**
+  * [101-avg_temperatures.sql](./101-avg_temperatures.sql): MySQL script that displays the average temperature (Fahrenheit) by city in descending order.
+
+* **19. Temperatures #1**
+  * [102-top_city.sql](./102-top_city.sql): MySQL script that displays the three cities with the highest average temperature from July to August in descending order.
+
+* **20. Temperature #2**
+  * [103-max_state.sql](./103-max_state.sql): MySQL script that displays the max temperature of each state in order of state name.
+  
+## Dump file :dolphin:
+* Tasks 101-103 query from the database [temperatures.sql](./temperatures.sql).

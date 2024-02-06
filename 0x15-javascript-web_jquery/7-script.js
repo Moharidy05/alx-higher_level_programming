@@ -1,4 +1,3 @@
-$.get('https://swapi-api.alx-tools.com/api/people/5/?format=json', (response, code) => {
-  // console.log(response);
-  $('#character').text(response.name);
+$.get('https://swapi.co/api/people/5/?format=json', function (data) {
+  $('DIV#character').text(data.name);
 });

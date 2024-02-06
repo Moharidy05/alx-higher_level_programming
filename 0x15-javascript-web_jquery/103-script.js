@@ -1,14 +1,17 @@
-$(document).ready(function () {
-  const langCode = $('input#language_code').val();
-  const API_URL = `https://hellosalut.stefanbohacek.dev/?lang=${langCode}`;
-  $('input#btn_translate').on('click kepress', (event) => {
-    // console.log($('input#language_code').val());
-    // console.log(langCode);
-    // console.log(API_URL);
-    if (event.type === 'click' || (event.type === 'keypress' && event.keyCode === 13)) {
-      $.get(API_URL, (reponse, statusCode) => {
-        $('div#hello').text(reponse.hello);
-      });
-    }
+$('document').ready(function () {
+  $('INPUT#btn_translate').click(translate);
+  $('INPUT#language_code').focus(function () {
+    $(this).keydown(function (e) {
+      if (e.keyCode === 13) {
+        translate();
+      }
+    });
   });
 });
+
+function translate () {
+  const url = 'https://www.fourtonfish.com/hellosalut/?';
+  $.get(url + $.param({ lang: $('INPUT#language_code').val() }), function (data) {
+    $('DIV#hello').html(data.hello);
+  });
+}

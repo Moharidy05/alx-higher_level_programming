@@ -1,14 +1,8 @@
 #!/usr/bin/python3
-
-""" Function to serialize an object to JSON"""
-
-
+"""Defines a string-to-JSON function."""
 import json
 
 
 def to_json_string(my_obj):
-    """Serialize an object to JSON
-    Args:
-        my_obj(object) -> Any serializable object
-    """
-    return (json.dumps(my_obj))
+    """Return the JSON representation of a string object."""
+    return json.dumps(my_obj)
