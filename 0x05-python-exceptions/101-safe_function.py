@@ -5,6 +5,6 @@ import sys
 def safe_function(fct, *args):
     try:
         return fct(*args)
-    except (ZeroDivisionError, ValueError, TypeError, IndexError) as error:
-        print("Exception: {}".format(error), file=sys.stderr)
+    except Exception as i:
+        sys.stderr.write("Exception: {}\n".format(i))
         return None

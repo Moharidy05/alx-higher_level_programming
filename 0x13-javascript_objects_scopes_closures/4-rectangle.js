@@ -1,36 +1,28 @@
 #!/usr/bin/node
-// class Rectangle that defines a rectangle
 
-class Rectangle {
+module.exports = class Rectangle {
   constructor (w, h) {
-    if (w > 0 && h > 0) {
-      this.width = w;
-      this.height = h;
+    if ((w > 0) && (h > 0)) {
+      [this.width, this.height] = [w, h];
     }
   }
 
   print () {
-    let i, j, string;
-    for (i = 0; i < this.height; i++) {
-      string = '';
-      for (j = 0; j < this.width; j++) {
-        string += 'X';
-      }
-      console.log(string);
+    let sizeY = this.height;
+    while (sizeY > 0) {
+      console.log('X'.repeat(this.width));
+      sizeY -= 1;
     }
   }
 
   rotate () {
-    let temp;
-    temp = this.height;
+    const tempHeight = this.height;
     this.height = this.width;
-    this.width = temp;
+    this.width = tempHeight;
   }
 
   double () {
-    this.height *= 2;
-    this.width *= 2;
+    [this.width, this.height] = [this.width, this.height]
+      .map(prop => prop * 2);
   }
-}
-
-module.exports = Rectangle;
+};

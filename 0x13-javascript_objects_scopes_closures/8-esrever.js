@@ -1,11 +1,17 @@
 #!/usr/bin/node
-// function that returns the reversed version of a list
 
+/*
+Ok, this is by far the worst algorithim I've written,
+with a time Complexity of O(n)
+
+Ill have to optimize this one :(:(:(
+*/
 exports.esrever = function (list) {
+  const listLen = list.length;
+  const newList = [];
 
-  let rlist = [];
-  while (list.length > 0) {
-    rlist.push(list.pop());
+  for (let i = listLen; i >= 0; i--) {
+    newList.push(list[i]);
   }
-  return rlist;
+  return (newList.slice(1, newList.length));
 };

@@ -1,16 +1,23 @@
 #!/usr/bin/python3
-"""A script that takes in a URL,
-Sends a request to the URL,
-And displays the value of the X-Request-Id variable found in the header ofthe response.
-"""
+"""Find the value of the X-Request-Id in response"""
 
-import sys
-import urllib.request
+from urllib import request, error
+from sys import argv
+
+
+def request_header_property(url: str) -> str:
+    """
+    Send a request to the URL specified and
+    get the response headers
+    Args:
+        url (str): The URL to query
+    """
+    try:
+        with request.urlopen(url) as response:
+            return response.info()['X-Request-Id']
+    except error.URLError as e:
+        return e.reason
 
 
 if __name__ == "__main__":
-    url = sys.argv[1]
-
-    request = urllib.request.Request(url)
-    with urllib.request.urlopen(request) as resp:
-        print(dict(resp.headers).get("X-Request-Id"))
+    print(request_header_property(argv[1]))

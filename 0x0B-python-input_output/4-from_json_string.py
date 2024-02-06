@@ -1,12 +1,17 @@
 #!/usr/bin/python3
-''' function that returns an object (Python data structure) represented by a JSON string
-'''
+
+"""Function to unserialize a JSON string to python object"""
+
 
 import json
 
 
 def from_json_string(my_str):
-    ''' module from_json_string
-     returns Python objects
-    '''
-    return json.loads(my_str)
+    """Unserialize <my_str>
+    Args:
+        my_str(str) -> JSON string to unserialize
+    Returns:
+        unserialized object repesentation of my_str
+    """
+    if my_str:
+        return json.loads(my_str)

@@ -1,14 +1,31 @@
 #!/usr/bin/python3
 """
-Python script that takes your Github credentials (username and password)
-and uses the Github API to display your id
+module to print ones github id
+One will need GH PAT for this
 """
-import requests
-from requests.auth import HTTPBasicAuth
-from sys import argv
 
-if __name__ == '__main__':
-    url = 'https://api.github.com/users/{}'.format(argv[1])
-    r = requests.get(url,
-                     auth=HTTPBasicAuth(argv[1], argv[2]))
-    print(r.json().get('id'))
+from requests import get
+from sys import argv
+from requests.auth import HTTPBasicAuth
+
+
+def get_github_id(username: str, tokken: str) -> str:
+    """
+    get the user id of a github user
+    Args:
+        username (str): github handle
+        tokken (str): the personal access tokken
+    """
+    headers = {
+        "Accept": "application/vnd.github+json",
+        "X-GitHub-Api-Version": "2022-11-28",
+        "Authorization": "Bearer {}".format(tokken),
+        "User-Agent": "I am the Cavalry"
+    }
+    auth = HTTPBasicAuth(username, tokken)
+    response = get("https://api.github.com/user", headers=headers, auth=auth)
+    return response.json().get('id')
+
+
+if __name__ == "__main__":
+    print(get_github_id(argv[1], argv[2]))

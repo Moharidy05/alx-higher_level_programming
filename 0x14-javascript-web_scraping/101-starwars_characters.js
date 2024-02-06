@@ -1,28 +1,36 @@
 #!/usr/bin/node
-// A script that prints all characters of a Star Wars movie
-// Display characters name in the same order of the list  “characters” in the /films/ response
-
 const request = require('request');
-const url = 'https://swapi-api.hbtn.io/api/films/' + process.argv[2];
 
-function printCharacters (characters, idx) {
-  request(characters[idx], (err, res, body) => {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log(JSON.parse(body).name);
-      if (idx + 1 < characters.length) {
-        printCharacters(characters, idx + 1);
-      }
-    }
-  });
-}
+const movieId = process.argv[2];
+const baseUrl = 'https://swapi-api.alx-tools.com/api/films/';
+const fullUrl = baseUrl.concat(movieId);
 
-request(url, (err, res, body) => {
-  if (err) {
-    console.log(err);
-  } else {
+request(fullUrl, (error, response, body) => {
+  if (!error) {
     const characters = JSON.parse(body).characters;
-    printCharacters(characters, 0);
+    // Create a variable to store the number of characters processed
+    let charactersProcessed = 0;
+    // Create an empty array to store the character names
+    const characterNames = [];
+    characters.forEach((characterUrl) => {
+      request(characterUrl, (error, response, body) => {
+        if (!error) {
+          const charName = JSON.parse(body).name;
+          // Add the character name to the array
+          characterNames.push(charName);
+        }
+        // Increment the charactersProcessed variable
+        charactersProcessed++;
+        // Check if all characters have been processed
+        if (charactersProcessed === characters.length) {
+          // Log the character names when all characters have been processed
+          characterNames.forEach((actor) => {
+            console.log(actor);
+          });
+        }
+      });
+    });
+  } else {
+    console.log(error);
   }
 });

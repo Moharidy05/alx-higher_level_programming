@@ -1,20 +1,21 @@
 #!/usr/bin/python3
-''' a class Student that defines a student
-'''
+
+"""Student class to represent a student"""
 
 
 class Student:
-    '''module class student
-    '''
-
+    """Defining student class """
     def __init__(self, first_name, last_name, age):
-        '''method __init__
-        '''
+        """Student constructor
+        Args:
+            first_name(str)
+            last_name(str)
+            age(str)
+        """
         self.first_name = first_name
         self.last_name = last_name
         self.age = age
 
     def to_json(self):
-        '''method to_json
-        '''
+        """ Retrive information about an instance to json"""
         return self.__dict__

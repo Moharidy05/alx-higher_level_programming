@@ -1,13 +1,23 @@
 #!/usr/bin/python3
-"""
-Python Script that takes in a URL, sends a request to the URL
-& displays the body of the response
-"""
-import requests
+"""Send a request to the url and print the response"""
+
+from requests import get
 from sys import argv
 
-if __name__ == '__main__':
-    r = requests.get(argv[1])
-    status = r.status_code
-    print(r.text) if status < 400 else print(
-        "Error code: {}".format(r.status_code))
+
+def request_header_property(url: str) -> str:
+    """
+    Send a request to the URL specified and
+    get the response and handle exceptions
+    Args:
+        url (str): The URL to query
+    """
+    response = get(url)
+    if int(response.status_code) >= 400:
+        return ("Error code: {}".format(response.status_code))
+
+    return response.text
+
+
+if __name__ == "__main__":
+    print(request_header_property(argv[1]))

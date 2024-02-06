@@ -1,11 +1,27 @@
 #!/usr/bin/python3
+
 """
-Python script that takes in a URL, sends a request to the URL and displays
-the value of the variable X-Request-Id in the response header
+send a GET request to a the url provided
+as an Argument to the script and print the
+X-Request-Id value of the header
 """
-import requests
+
+
+from requests import get
 from sys import argv
 
-if __name__ == '__main__':
-    r = requests.get(argv[1])
-    print(r.headers.get('X-Request-Id'))
+
+def get_alx_intranet(url):
+    """
+    Send a GET request to the url
+    and print the X-Request-Id header value
+    """
+    if url:
+        try:
+            return get(url).headers.get('X-Request-Id')
+        except Exception as e:
+            return e
+
+
+if __name__ == "__main__":
+    print(get_alx_intranet(argv[1]))
