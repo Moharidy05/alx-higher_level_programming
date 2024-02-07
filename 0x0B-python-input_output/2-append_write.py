@@ -1,9 +1,8 @@
 #!/usr/bin/python3
-"""append write function"""
+"""Module defines a function that appends a string at the end of a text file"""
 
 
 def append_write(filename="", text=""):
-    """adds string to already existing file"""
-
-    with open(filename, mode="a", encoding="utf-8") as file:
-        return (file.write(text))
+    """appends a string at the end of a text file (UTF8)"""
+    with open(filename, 'a', encoding="utf-8") as f:
+        return f.write(text)

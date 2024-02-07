@@ -1,31 +1,30 @@
 #!/usr/bin/python3
-"""Defines a square class."""
+""" class square """
 from models.rectangle import Rectangle
+from models.base import Base
 
 
 class Square(Rectangle):
-    """Represent a square."""
+    """class square"""
 
     def __init__(self, size, x=0, y=0, id=None):
-        """Initialize a new Square.
-
-        Args:
-            size (int): The size of the new Square.
-            x (int): The x coordinate of the new Square.
-            y (int): The y coordinate of the new Square.
-            id (int): The identity of the new Square.
-        """
+        """initialize class"""
         super().__init__(size, size, x, y, id)
 
     @property
     def size(self):
-        """Get/set the size of the Square."""
+        """gets the size"""
         return self.width
 
     @size.setter
     def size(self, value):
+        """sets the size"""
         self.width = value
         self.height = value
+
+    def __str__(self):
+        """print string"""
+        return f"[Square] ({self.id}) {self.x}/{self.y} - {self.width}"
 
     def update(self, *args, **kwargs):
         """Update the Square.
@@ -69,15 +68,5 @@ class Square(Rectangle):
                     self.y = v
 
     def to_dictionary(self):
-        """Return the dictionary representation of the Square."""
-        return {
-            "id": self.id,
-            "size": self.width,
-            "x": self.x,
-            "y": self.y
-        }
-
-    def __str__(self):
-        """Return the print() and str() representation of a Square."""
-        return "[Square] ({}) {}/{} - {}".format(self.id, self.x, self.y,
-                                                 self.width)
+        """dictionary"""
+        return {"id": self.id, "size": self.width, "x": self.x, "y": self.y}

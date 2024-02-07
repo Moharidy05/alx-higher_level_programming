@@ -1,7 +1,8 @@
 #!/usr/bin/python3
-"""Defines a reactangles"""
+
+""" define class rectangle"""
 
 
-class Rectangle:
-    """Empty class rectangle"""
+class Rectangle():
+    """ inside class rectangle"""
     pass

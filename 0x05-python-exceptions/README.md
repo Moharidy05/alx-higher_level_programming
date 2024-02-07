@@ -1,1 +1,1 @@
-0x05-python_exceptions
+0x05-python-exceptions

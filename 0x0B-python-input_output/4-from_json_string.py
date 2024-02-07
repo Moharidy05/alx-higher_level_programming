@@ -1,8 +1,8 @@
 #!/usr/bin/python3
-"""returns python obj representation of a string"""
+"""Module that contains a function that returns an object"""
+import json
 
 
 def from_json_string(my_str):
-    """returns json representation of a string"""
-
+    """returns an object (Python data structure) represented by a JSON str"""
     return json.loads(my_str)

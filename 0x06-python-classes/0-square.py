@@ -1,7 +1,8 @@
 #!/usr/bin/python3
-"""Class Square"""
+
+"""define a class Square"""
 
 
-class Square:
-    """Declaring a class that does nothing"""
+class Square():
+    """the class square"""
     pass
