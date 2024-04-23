@@ -1,2 +1,3 @@
 #!/usr/bin/node
-console.log(`${process.argv[2]} is ${process.argv[3]}`);
+const arg = process.argv;
+console.log(arg[2] + ' is ' + arg[3]);

@@ -1,10 +1,15 @@
 #!/usr/bin/python3
 
 if __name__ == "__main__":
-    """Print the addition of all arguments."""
+    """add infinite number on cLD arg"""
     import sys
 
-    total = 0
-    for i in range(len(sys.argv) - 1):
-        total += int(sys.argv[i + 1])
-    print("{}".format(total))
+    argv = sys.argv
+    b = len(argv) - 1
+    sum = 0
+    if b == 0:
+        print(sum)
+    else:
+        for i in range(1, len(argv)):
+            sum += int(argv[i])
+        print(sum)

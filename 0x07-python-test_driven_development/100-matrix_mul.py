@@ -1,63 +1,67 @@
 #!/usr/bin/python3
-"""Defines an matrix_mul function."""
+"""
+multiplication of two matrices
+"""
 
 
 def matrix_mul(m_a, m_b):
-    """Multiply two matrices(lists of lists of integers/floats)
-    
+    """multiplication of two matrices
+
     Args:
-        m_a (list of lists of ints/floats): the first matrix.
-        m_b (list of lists of ints/floats): the second matrix.
-    
+        m_a : the first matrix(list of list)
+        m_b : the second matrix(list of list)
+
     Raises:
-        TypeError: if either m_a or m_b is not list or list of lists is not an integer or a float 
-                    or not a rectangle
-        ValueError: if either m_a or m_b is empty, or can’t be multiplied
+        TypeError: if matrix...
+        ValueError: if matrix...
+
+    Return:
+        the new matrix
     """
-    if type(m_a) is not list:
-        raise TypeError("m_a must be a list")
-    l1 = len(m_a)
-    if l1 == 0:
+    if not isinstance(m_a, list):
+        raise TypeError('m_a must be a list')
+    if not isinstance(m_b, list):
+        raise TypeError('m_b must be a list')
+    if not all((isinstance(i, list) for i in m_a)):
+        raise TypeError('m_a must be a list of lists')
+    if not all((isinstance(i, list) for i in m_b)):
+        raise TypeError("m_b must be a list of lists")
+    if m_a == [] or m_a == [[]]:
         raise ValueError("m_a can't be empty")
-    l2 = None
-    for i in m_a:
-        if type(i) is not list:
-            raise TypeError("m_a must be a list of lists")
-        if l2 is None:
-            l2 = len(i)
-            if l2 == 0:
-                raise ValueError("m_a can't be empty")
-        if l2 != len(i):
-            raise TypeError("each row of m_a must should be of the same size")
-        for j in i:
-            if type(j) is not int and type(j) is not float:
-                raise TypeError("m_a should contain only integers or floats")
-    if type(m_b) is not list:
-        raise TypeError("m_b must be a list")
-    if len(m_b) == 0:
+    if m_b == [] or m_b == [[]]:
         raise ValueError("m_b can't be empty")
-    l3 = None
-    for i in m_b:
-        if type(i) is not list:
-            raise TypeError("m_b must be a list of lists")
-        if l3 is None:
-            l3 = len(i)
-            if l3 == 0:
-                raise ValueError("m_b can't be empty")
-        if l3 != len(i):
-            raise TypeError("each row of m_b must should be of the same size")
-        for j in i:
-            if type(j) is not int and type(j) is not float:
-                raise TypeError("m_b should contain only integers or floats")
-    if l2 != len(m_b):
+    if not all((isinstance(j, int) or
+                isinstance(j, float))
+               for j in [a for i in m_a for a in i]):
+        raise TypeError("m_a should contain only integers or floats")
+    if not all((isinstance(j, int) or
+                isinstance(j, float))
+               for j in [a for i in m_a for a in i]):
+        raise TypeError("m_b should contain only integers or floats")
+    if not all((len(a) == len(m_a[0])) for a in m_a):
+        raise TypeError("each row of m_a must be of the same size")
+    if not all((len(b) == len(m_b[0])) for b in m_b):
+        raise TypeError("each row of m_b must be of the same size")
+    c_len_a = len(m_a[0])
+    len_a = len(m_a)
+    c_len_b = len(m_b[0])
+    len_b = len(m_b)
+    if c_len_a != len_b:
         raise ValueError("m_a and m_b can't be multiplied")
-    matrix = []
-    for i in range(l1):
-        l = []
-        for j in range(l3):
-            n = 0
-            for k in range(l2):
-                n += m_a[i][k] * m_b[k][j]
-            l.append(n)
-        matrix.append(l)
-    return matrix
+    transpose_b = []
+    for i in range(c_len_b):
+        b_list = []
+        for j in range(len_b):
+            b_list.append(m_b[j][i])
+        transpose_b.append(b_list)
+
+    new_matrix = []
+    for a in m_a:
+        m_list = []
+        for b in transpose_b:
+            ans = 0
+            for k in range(len(transpose_b[0])):
+                ans += a[k] * b[k]
+            m_list.append(ans)
+        new_matrix.append(m_list)
+    return (new_matrix)

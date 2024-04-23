@@ -1,40 +1,34 @@
 #!/usr/bin/python3
-def to_subtract(list_num):
-    to_sub = 0
-    max_list = max(list_num)
-
-    for n in list_num:
-        if max_list > n:
-            to_sub += n
-
-    return (max_list - to_sub)
-
-
 def roman_to_int(roman_string):
-    if not roman_string:
-        return 0
+    """Roman to Int
 
-    if not isinstance(roman_string, str):
-        return 0
+    Args:
+        roman_string: the roman string
 
-    rom_n = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}
-    list_keys = list(rom_n.keys())
-
-    num = 0
-    last_rom = 0
-    list_num = [0]
-
-    for ch in roman_string:
-        for r_num in list_keys:
-            if r_num == ch:
-                if rom_n.get(ch) <= last_rom:
-                    num += to_subtract(list_num)
-                    list_num = [rom_n.get(ch)]
-                else:
-                    list_num.append(rom_n.get(ch))
-
-                last_rom = rom_n.get(ch)
-
-    num += to_subtract(list_num)
-
-    return (num)
+    Returns:
+        the arabic numeral
+    """
+    if type(roman_string) != str or roman_string is None:
+        return (0)
+    roman = ['M', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX',
+             'V', 'IV', 'I']
+    arabic = [1000, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]
+    length = len(roman_string)
+    number = 0
+    a = 0
+    while length != 0:
+        if length == 1:
+            idx = roman.index(roman_string[a])
+            number += arabic[idx]
+            return (number)
+        try:
+            idx = roman.index(roman_string[a: a + 2])
+            number += arabic[idx]
+            length -= 2
+            a += 2
+        except ValueError:
+            idx = roman.index(roman_string[a])
+            number += arabic[idx]
+            length -= 1
+            a += 1
+    return (number)

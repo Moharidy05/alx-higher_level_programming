@@ -1,3 +1,3 @@
 #!/bin/bash
-# sends a GET request to an URL, and displays the body of the response
+#get a body of a respons and siaply the status line only
 curl -sL "$1"

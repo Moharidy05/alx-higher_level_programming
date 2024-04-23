@@ -1,9 +1,18 @@
 #!/usr/bin/python3
 def complex_delete(a_dictionary, value):
-    list_keys = list(a_dictionary.keys())
+    """complex delete in a dictionary
 
-    for value_dic in list_keys:
-        if value == a_dictionary.get(value_dic):
-            del a_dictionary[value_dic]
+    Args:
+        a_dictionary: the dictionary
+        value in the dictionary
 
+    Returns:
+        the dictionary with change value
+    """
+    new_list = []
+    for i, j in a_dictionary.items():
+        if j == value:
+            new_list.append(i)
+    for m in new_list:
+        del a_dictionary[m]
     return (a_dictionary)
