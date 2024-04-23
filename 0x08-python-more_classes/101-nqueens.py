@@ -1,41 +1,22 @@
 #!/usr/bin/python3
+"""
+N Queens problem
+"""
+
+
 import sys
 
+n = int(sys.argv[1])
 
-def solve_n_queens(N):
-    def can_place(pos, oc_positions):
-        for i in range(len(oc_positions)):
-            if oc_positions[i] == pos or \
-                    oc_positions[i] - i == pos - len(oc_positions) or \
-                    oc_positions[i] + i == pos + len(oc_positions):
-                return False
-        return True
-
-    def place_queen(oc_positions, target_row, N):
-        if target_row == N:
-            result.append(oc_positions)
-            return
-        for column in range(N):
-            if can_place(column, oc_positions):
-                place_queen(oc_positions + [column], target_row + 1, N)
-
-    result = []
-    place_queen([], 0, N)
-    return result
-
-
-if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: nqueens N")
-        sys.exit(1)
-    if not sys.argv[1].isdigit():
-        print("N must be a number")
-        sys.exit(1)
-    N = int(sys.argv[1])
-    if N < 4:
-        print("N must be at least 4")
-        sys.exit(1)
-
-    solutions = solve_n_queens(N)
-    for sol in solutions:
-        print([[i, sol[i]] for i in range(N)])
+for z in range(1, n - 1):
+    step = z + 1
+    tstep = step
+    new_list = [list([0, 0]) for i in range(0, n)]
+    for x in range(0, n):
+        new_list[x] = [x, tstep - 1]
+        tstep += step
+        if (tstep > n and n % 2 == 0):
+            tstep -= n + 1
+        elif (tstep > n and n % 2 == 1):
+            tstep -= n
+    print(new_list)

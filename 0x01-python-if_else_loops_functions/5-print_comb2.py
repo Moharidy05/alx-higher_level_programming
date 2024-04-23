@@ -1,4 +1,2 @@
 #!/usr/bin/python3
-for number in range(0, 99):
-    print('{:02d}'.format(number), end=", ")
-print('99')
+print(", ".join("{:02d}".format(i) for i in range(0, 100)))

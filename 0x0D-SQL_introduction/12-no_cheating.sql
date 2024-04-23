@@ -1,4 +1,4 @@
--- Updates the score of Bob to 10 in the table second_table in my MySQL server.
-UPDATE `second_table`
-SET `score` = 10
-WHERE `name` = "Bob";
+-- Changes records in a table in the database
+UPDATE second_table
+    SET score = 10
+    WHERE name = 'Bob';

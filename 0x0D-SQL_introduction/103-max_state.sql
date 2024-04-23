@@ -1,5 +1,5 @@
--- Displays the max temperature of each state, ordered by state name.
-SELECT `state`, MAX(`value`) AS `max_temp`
-FROM `temperatures`
-GROUP BY `state`
-ORDER BY `state`;
+-- Computes the maximum by column of a group of records
+-- in a table in the database
+SELECT state, MAX(value) AS max_temp FROM temperatures
+    GROUP BY state
+    ORDER BY state;

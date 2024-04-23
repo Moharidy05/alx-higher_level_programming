@@ -1,20 +1,22 @@
 #!/usr/bin/python3
+"""Area and Perimeter"""
 
-""" define class rectangle"""
 
+class Rectangle:
+    """Defines the implementation of a rectangle"""
 
-class Rectangle():
-    """constructor"""
     def __init__(self, width=0, height=0):
         self.width = width
         self.height = height
 
     @property
     def width(self):
+        """Property retriever, for retreiving"""
         return self.__width
 
     @width.setter
     def width(self, value):
+        """Property setter, for setting"""
         if not isinstance(value, int):
             raise TypeError("width must be an integer")
         if value < 0:
@@ -23,6 +25,9 @@ class Rectangle():
 
     @property
     def height(self):
+        """Property retriever, for retreiving
+        the rectangle height
+        """
         return self.__height
 
     @height.setter
@@ -34,9 +39,17 @@ class Rectangle():
         self.__height = value
 
     def area(self):
-        return self.__height * self.__width
+        """Public instance method that returns
+        the rectangle area
+        """
+        rectangle_area = self.__height * self.__width
+        return rectangle_area
 
     def perimeter(self):
-        if (not self.__height or not self.__width):
-            return 0
-        return 2 * (self.__width + self.__height)
+        """Public instance method that returns the
+        rectangle perimeter
+        """
+        if self.__width == 0 or self.__height == 0:
+            return (0)
+        rectangle_params = ((2 * self.__height) + (2 * self.__width))
+        return rectangle_params
