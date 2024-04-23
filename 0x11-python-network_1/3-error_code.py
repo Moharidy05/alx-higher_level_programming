@@ -1,16 +1,20 @@
 #!/usr/bin/python3
+"""Sends a request to a given URL and displays the response body.
+
+Usage: ./3-error_code.py <URL>
+  - Handles HTTP errors.
 """
-given URL, sends a request, displays response (utf-8).
-usage: ./3-error_code.py http://0.0.0.0:5000/status_401
-"""
+import sys
+import urllib.error
 import urllib.request
-from sys import argv
-import urllib.parse
 
 
 if __name__ == "__main__":
+    url = sys.argv[1]
+
+    request = urllib.request.Request(url)
     try:
-        with urllib.request.urlopen(argv[1]) as response:
-            print(response.read().decode())
-    except urllib.error.URLError as e:
+        with urllib.request.urlopen(request) as response:
+            print(response.read().decode("ascii"))
+    except urllib.error.HTTPError as e:
         print("Error code: {}".format(e.code))

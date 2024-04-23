@@ -1,13 +1,10 @@
 #!/usr/bin/python3
-""" Improve Geometry.
-"""
+"""Defines a base geometry class BaseGeometry."""
 
 
 class BaseGeometry:
-    """An empty class"""
+    """Represent base geometry."""
 
     def area(self):
-        """Raises an exception because...
-        area is not implemented
-        """
+        """Not implemented."""
         raise Exception("area() is not implemented")
