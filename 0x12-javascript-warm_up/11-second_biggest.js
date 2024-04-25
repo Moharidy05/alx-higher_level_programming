@@ -1,19 +1,26 @@
 #!/usr/bin/node
-let i, num, max, secondMax;
-if (process.argv.length <= 3) {
-  console.log(0);
-} else {
-  for (i = 2; i < process.argv.length; i++) {
-    num = parseInt(process.argv[i], 10);
-    if (i === 2) {
-      max = num;
-    }
-    if (num > max) {
-      secondMax = max;
-      max = num;
-    } else {
-      secondMax = num;
+
+const len = process.argv.length;
+const nums = process.argv.slice(2).map(function (n) {
+  return parseInt(n);
+});
+const max = Math.max.apply(Math, nums);
+const min = Math.min.apply(Math, nums);
+
+if (len > 3) {
+  let i = 0;
+  let n = 0;
+  let secBig = min;
+
+  for (; i < len; ++i) {
+    n = nums[i];
+
+    if (n > secBig && n < max) {
+      secBig = n;
     }
   }
-  console.log(secondMax);
+
+  console.log(secBig);
+} else {
+  console.log(0);
 }

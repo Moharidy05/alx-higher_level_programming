@@ -1,9 +1,9 @@
-$(function () {
-  $.ajax({
-    type: 'GET',
-    url: 'https://swapi.co/api/people/5/?format=json',
-    success: function (data) {
-      $('DIV#character').text(data.name);
-    }
-  });
+const characterUri = 'https://swapi-api.hbtn.io/api/people/5/?format=json';
+const $characterDiv = $('div#character');
+
+$.ajax({
+  url: characterUri,
+  dataType: 'json'
+}).done((data) => {
+  $characterDiv.text(data.name);
 });
