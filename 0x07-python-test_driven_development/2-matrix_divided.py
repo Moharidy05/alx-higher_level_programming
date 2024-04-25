@@ -1,37 +1,45 @@
 #!/usr/bin/python3
 """
-This about dividing the list of list of int and float by divisor
+Divides all elements of a matrix
 """
 
 
 def matrix_divided(matrix, div):
-    """divide through by mtrix
-
+    """divides all elements of a matrix
     Args:
-        matrix: list of list of int or float
-        div: the divisor
-
-    Raises:
-        Typerror: if matrix is not list of list
-        Typeerror: if matrix is not regular
-        Typeerror: if matrix contain anthing other than int & float
-        Typeerror: if div is not a number is 0
-
+        matrix (:obj:`list` of :obj:`list` of :obj:`int` or :obj:`float`):
+            list of lists of integers or floats
+        div (int or float): divisor
     Returns:
-        the new list without mutatng original list
+        a new matrix containing the quotients
+    Raises:
+        TypeError: if matrix elements are neither int nor float,
+            if matrix rows are not the same size
+        ZeroDivisionError: if dividing by zero
     """
-    if (not isinstance(matrix, list)
-        or matrix == []
-        or not all(isinstance(num, list) for num in matrix)
-        or not all((isinstance(elem, int))
-                   or (isinstance(elem, float))
-                   for elem in [a for b in matrix for a in b])):
-        raise TypeError("matrix must be a matrix (list of lists)\
-        of integers/floats")
-    if not (all(len(a) == len(matrix[0]) for a in matrix)):
-        raise TypeError("Each row of the matrix must have the same size")
-    if not ((isinstance(div, int)) or (isinstance(div, float))):
+    new = []
+
+    if div is None or type(div) is not int and type(div) is not float:
         raise TypeError("div must be a number")
     if div == 0:
-        raise ZeroDivisionError('division by zero')
-    return ([list(map((lambda x: round(x / div, 2)), row)) for row in matrix])
+        raise ZeroDivisionError("division by zero")
+    if type(matrix) is not list:
+        raise TypeError("matrix must be a matrix (list of lists)"
+                        " of integers/floats")
+
+    for i in range(len(matrix)):
+        if type(matrix[i]) is not list:
+            raise TypeError("matrix must be a matrix (list of lists)"
+                            " of integers/floats")
+        inside = []
+        for j in range(len(matrix[i])):
+            if type(matrix[i][j]) is not int\
+               and type(matrix[i][j]) is not float:
+                raise TypeError("matrix must be a matrix (list of lists)"
+                                " of integers/floats")
+            if len(matrix[0]) != len(matrix[i]):
+                raise TypeError("Each row of the matrix"
+                                " must have the same size")
+            inside.append(round((matrix[i][j]) / div, 2))
+        new.append(inside)
+    return new

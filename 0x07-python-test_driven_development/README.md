@@ -1,12 +1,13 @@
-# Testing 
+# 0x07. Python - Test-driven development
 
-`Trust but verify-***William Shakespare***`
+0. adds 2 integers
 
-This about how to test in python using various testing which includes
-*Python built-in unit testing and doctesting*.
+1. divides all elements of a matrix
 
-We expore different areas of testing in building a reputable software.
+2. prints “My name is ”
 
-Testing is very important because according to William Roosevelt he said: `The only
-thing we have to fear is fear itself`. We are eliminating the fear in code by testing
-it and make sure it works`
+3. prints a square with the character #
+
+4. prints a text with 2 new lines after each of these characters: ., ? and :
+
+5. write unit tests

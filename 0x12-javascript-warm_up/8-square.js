@@ -1,12 +1,9 @@
 #!/usr/bin/node
-const arg = Math.floor(Number(process.argv[2]));
-if (Number.isInteger(arg)) {
-  for (let i = 0; i < arg; i++) {
-    let row = '';
-    for (let j = 0; j < arg; j++) {
-      row += 'X';
-    }
-    console.log(row);
+const x = process.argv[2];
+let y = 'X';
+if (x && isNaN(x) === false) {
+  for (let i = 0; i < x; i++) {
+    console.log(y.repeat(x));
   }
 } else {
   console.log('Missing size');

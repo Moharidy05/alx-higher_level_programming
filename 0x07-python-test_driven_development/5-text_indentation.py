@@ -1,29 +1,44 @@
 #!/usr/bin/python3
-"""Defines a text-indentation function."""
+"""
+prints text in special format
+"""
 
 
 def text_indentation(text):
-    """Print text with two new lines after each '.', '?', and ':'.
+    """prints a text with 2 new lines after each of these characters: . ? :
 
     Args:
-        text (string): The text to print.
+        text (str): a string
+
     Raises:
-        TypeError: If text is not a string.
+        TypeError: if text is not a string
     """
-    if not isinstance(text, str):
+    new = ""
+    substring = ""
+    temp = [] * 2
+    flag = 0
+
+    if type(text) is not str:
         raise TypeError("text must be a string")
 
-    c = 0
-    while c < len(text) and text[c] == ' ':
-        c += 1
-
-    while c < len(text):
-        print(text[c], end="")
-        if text[c] == "\n" or text[c] in ".?:":
-            if text[c] in ".?:":
-                print("\n")
-            c += 1
-            while c < len(text) and text[c] == ' ':
-                c += 1
-            continue
-        c += 1
+    for i in range(len(text)):
+        if i < len(text) and text[i] == '.' or text[i] == '?'\
+           or text[i] == ':':
+            if flag == 0:
+                temp = text.split(text[i], 1)
+                flag = 1
+            else:
+                temp = substring.split(text[i], 1)
+            new += temp[0].lstrip(' ') + text[i]
+            substring = temp[1]
+            print("{:s}".format(new))
+            print()
+            new = ""
+    if flag == 0:
+        text = text.lstrip(' ')
+        text = text.rstrip(' ')
+        print("{:s}".format(text), end="")
+    else:
+        substring = substring.lstrip(' ')
+        substring = substring.rstrip(' ')
+        print("{:s}".format(substring), end="")

@@ -1,15 +1,18 @@
 #!/usr/bin/python3
-"""select all states from the database hbtn_0e_0_usa"""
+"""
+takes in arguments and displays all values in the states
+table of hbtn_0e_0_usa where name matches the argument,
+safe from MySQL injections
+"""
 import MySQLdb
-import sys
+from sys import argv
+
 
 if __name__ == "__main__":
-    db = MySQLdb.connect(user=sys.argv[1], passwd=sys.argv[2], db=sys.argv[3])
+    db = MySQLdb.connect(host="localhost", port=3306,
+                         user=argv[1], passwd=argv[2], db=argv[3])
     cur = db.cursor()
-    value = sys.argv[4]
-    cur.execute("SELECT * FROM `states` WHERE name\
-            LIKE %s ORDER BY `id` ASC", (value,))
-    for i in cur.fetchall():
-        print(i)
-    cur.close()
-    db.close()
+    sql = "SELECT * FROM states WHERE name=%s ORDER BY states.id"
+    num_rows = cur.execute(sql, (argv[4], ))
+    for i in range(num_rows):
+        print(cur.fetchone())

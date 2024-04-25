@@ -1,18 +1,27 @@
 #!/usr/bin/python3
-"""get json element"""
+"""
+takes in a letter and sends a POST request to
+http://0.0.0.0:5000/search_user with the letter as a parameter
+"""
+import requests
+from sys import argv
+
 
 if __name__ == "__main__":
-    import requests
-    import sys
-
-    data = {}
-    data['q'] = '' if (len(sys.argv) == 1) else sys.argv[1]
-    r = requests.post('http://0.0.0.0:5000/search_user', data=data)
+    """
+    takes in a letter and sends a POST request to
+    http://0.0.0.0:5000/search_user with the letter as a parameter
+    """
+    url = 'http://0.0.0.0:5000/search_user'
+    r = requests.get(url)
+    if len(argv) == 2:
+        r = requests.post(url, data={'q': argv[1]})
+    else:
+        r = requests.post(url, data={'q': ""})
     try:
-        c = r.json()
-        if (c == {}):
-            print('No result')
+        if r.json() == {}:
+            print("No result")
         else:
-            print('[{}] {}'.format(c['id'], c['name']))
-    except ValueError:
-        print('Not a valid JSON')
+            print("[{}] {}".format(r.json().get('id'), r.json().get('name')))
+    except:
+        print("Not a valid JSON")

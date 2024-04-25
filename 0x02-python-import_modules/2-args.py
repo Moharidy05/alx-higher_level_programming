@@ -1,17 +1,14 @@
 #!/usr/bin/python3
-
+from sys import argv
 if __name__ == "__main__":
-    """print the no. and value of CLD"""
-    import sys
+    i = 1
+    if len(argv) == 1:
+        print("{:d} arguments.".format(len(argv) - 1))
+    elif len(argv) == 2:
+        print("{:d} argument:".format(len(argv) - 1))
+        print("{:d}: {:s}".format(i, argv[i]))
 
-    argv = sys.argv
-    b = len(argv) - 1
-    if b == 0:
-        print("0 arguments.")
-    elif b == 1:
-        print("{} argument:".format(b))
-        print("{}: {}".format(b, argv[b]))
-    elif b > 1:
-        print("{} arguments:".format(b))
+    else:
+        print("{:d} arguments:".format(len(argv) - 1))
         for i in range(1, len(argv)):
-            print("{}: {}".format(i, argv[i]))
+            print("{:d}: {:s}".format(i, argv[i]))

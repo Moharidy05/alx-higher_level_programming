@@ -1,5 +1,6 @@
 #!/usr/bin/node
-let arg = 0;
+let count = 0;
 exports.logMe = function (item) {
-  console.log(`${arg++}: ${item}`);
+  console.log(count + ': ' + item);
+  count++;
 };

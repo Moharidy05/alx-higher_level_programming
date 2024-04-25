@@ -1,14 +1,10 @@
 #!/usr/bin/python3
-"""MyInt inverted eq and does not equal"""
-
-
 class MyInt(int):
-    """hange == and !="""
+    """creates a class MyInt"""
+    def __eq__(self, other):
+        """invert == to !="""
+        return False
 
-    def __ne__(self, value):
-        """revert equal"""
-        return (self.real == value)
-
-    def __eq__(self, value):
-        """revert not equal"""
-        return (self.real != value)
+    def __ne__(self, other):
+        """invert != to =="""
+        return True

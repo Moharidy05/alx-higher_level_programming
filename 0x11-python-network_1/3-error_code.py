@@ -1,14 +1,25 @@
 #!/usr/bin/python3
-"""handling error code wih urllib request"""
+"""
+takes in a URL and an email, sends a POST request to the passed URL
+with the email as a parameter, and displays the body of the
+response (decoded in utf-8)
+"""
+import urllib.request
+from sys import argv
+
 
 if __name__ == "__main__":
-    import urllib.request
-    import sys
-
-    url = sys.argv[1]
+    """
+    takes in a URL and an email, sends a POST request to the passed
+    URL with the email as a parameter, and displays the body of the
+    response (decoded in utf-8)
+    """
+    url = argv[1]
     req = urllib.request.Request(url)
     try:
-        with urllib.request.urlopen(req) as request:
-            print(request.read().decode('utf-8'))
+        with urllib.request.urlopen(req) as response:
+            html = response.read()
+            html_str = html.decode('utf-8')
+            print(html_str)
     except urllib.error.HTTPError as e:
-        print('Error code: {}'.format(e.code))
+        print("Error code: {}".format(e.code))

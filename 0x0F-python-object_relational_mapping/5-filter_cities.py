@@ -1,14 +1,27 @@
 #!/usr/bin/python3
-"""select all states from the database hbtn_0e_0_usa"""
+"""
+takes in the name of a state as an argument and
+lists all cities of that state, using the database hbtn_0e_4_usa
+"""
 import MySQLdb
-import sys
+from sys import argv
+
 
 if __name__ == "__main__":
-    db = MySQLdb.connect(user=sys.argv[1], passwd=sys.argv[2], db=sys.argv[3])
+    db = MySQLdb.connect(host="localhost", port=3306,
+                         user=argv[1], passwd=argv[2], db=argv[3])
     cur = db.cursor()
-    cur.execute("SELECT `cities`.`name` FROM `cities` INNER JOIN `states` ON\
-            `cities`.`state_id` = `states`.`id` WHERE `states`.`name` LIKE %s\
-            ORDER BY `cities`.`id` ASC", (sys.argv[4],))
-    print(", ".join(city[0] for city in cur.fetchall()))
+    sql = "SELECT cities.name FROM cities JOIN states ON\
+    cities.state_id = states.id WHERE states.name=%s\
+    ORDER BY cities.id"
+    num_rows = cur.execute(sql, (argv[4],))
+    rows = cur.fetchall()
+    result = []
+    i = 0
+    for row in rows:
+        result.append(rows[i][0])
+        i += 1
+    joined = ", ".join(result)
+    print(joined)
     cur.close()
     db.close()

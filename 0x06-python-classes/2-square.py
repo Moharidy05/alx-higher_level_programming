@@ -1,17 +1,18 @@
 #!/usr/bin/python3
-"""The square module continue"""
-
-
 class Square:
-    """The class to create square."""
-
+    """square"""
     def __init__(self, size=0):
-        """set size to private instance variable
+        """
+        initialize square size
 
         Args:
-            size (int): the size of the square
+        size (int): size of square
+
+        Returns:
+        None
         """
-        if not isinstance(size, int):
+
+        if type(size) is not int:
             raise TypeError("size must be an integer")
         elif size < 0:
             raise ValueError("size must be >= 0")

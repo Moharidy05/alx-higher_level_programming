@@ -1,20 +1,25 @@
 #!/usr/bin/node
-
 const request = require('request');
-const file = process.argv[2];
-request(file, function (err, response, body) {
-  if (err) console.log(err);
-  else {
-    const films = JSON.parse(body).results;
-    let count = 0;
-    for (const i in films) {
-      const film = films[i].characters;
-      for (const j in film) {
-        if (film[j].includes(18)) {
-          count++;
+const url = process.argv[2];
+
+function numAppearances (url) {
+  request(url, function (error, response, body) {
+    if (error) {
+      console.log(error);
+    } else {
+      let count = 0;
+      let hasId = /18/;
+      let resList = JSON.parse(body).results;
+      for (let i = 0; i < resList.length; i++) {
+        let charList = resList[i].characters;
+        for (let j = 0; j < charList.length; j++) {
+          if (hasId.test(charList[j]) === true) {
+            count++;
+          }
         }
       }
+      console.log(count);
     }
-    console.log(count);
-  }
-});
+  });
+}
+numAppearances(url);

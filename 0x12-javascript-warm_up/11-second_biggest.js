@@ -1,18 +1,19 @@
 #!/usr/bin/node
-const boy = process.argv;
-if (boy.length <= 3) {
+let i, num, max, secondMax;
+if (process.argv.length <= 3) {
   console.log(0);
 } else {
-  const arr = boy.slice(2);
-  for (let i = 0; i < arr.length; i++) {
-    arr[i] = Math.floor(Number(arr[i]));
-  }
-  const max = Math.max(...arr);
-  let maxa = -100;
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] > maxa && arr[i] < max) {
-      maxa = arr[i];
+  for (i = 2; i < process.argv.length; i++) {
+    num = parseInt(process.argv[i], 10);
+    if (i === 2) {
+      max = num;
+    }
+    if (num > max) {
+      secondMax = max;
+      max = num;
+    } else {
+      secondMax = num;
     }
   }
-  console.log(maxa);
+  console.log(secondMax);
 }
